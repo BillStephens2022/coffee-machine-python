@@ -42,6 +42,7 @@ is_on = True
 money = 0
 
 def check_resources(order_ingredients):
+    """checks if there is enough resources in the coffee machine to make the drink"""
     for ingredient in order_ingredients:
         if order_ingredients[ingredient] >= resources[ingredient]:
             print(f"Sorry there is not enough {ingredient}")
@@ -49,6 +50,7 @@ def check_resources(order_ingredients):
     return True
 
 def process_coins():
+    """prompts user to inssert coins and returns total dollar amount received"""
     print('Please insert coins.')
     total = int(input("How many quarters?: ")) * 0.25
     total += int(input("How many dimes?: ")) * 0.10
@@ -57,6 +59,7 @@ def process_coins():
     return total
 
 def check_payment(payment, cost):
+    """checks if payment is sufficient"""
     print('checking payment...')
     if payment >= cost:
         print("making your drink...")
@@ -69,6 +72,12 @@ def check_payment(payment, cost):
     else:
         print("Insufficient funds. Money refunded.")
         return False
+    
+def make_coffee(drink, order_ingredients):
+    """deducts resources used to make the drink"""
+    for ingredient in order_ingredients:
+        resources[ingredient] -= order_ingredients[ingredient]
+    print(f"Here is your {drink} ☕️. Enjoy")
 
 
 
@@ -89,6 +98,7 @@ while is_on:
             print('making your drink')
             payment = process_coins()
             print(f"total received: {payment}")
-            check_payment(payment, drink['cost'])
+            if check_payment(payment, drink['cost']):
+                make_coffee(choice, drink['ingredients'])
         else:
             is_on = False

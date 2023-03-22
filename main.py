@@ -30,7 +30,7 @@ resources = {
     "coffee": 100,
 }
 
-# TODO: 1.  Prompt user by asking "What would you like? (espresso/latte/capuccino):"
+# TODO: 1.  Prompt user by asking "What would you like? (espresso/latte/cappuccino):"
 # TODO: 2.  Turn off the coffee machine by entering "off" to the prompt.
 # TODO: 3.  Print report of resources.
 # TODO: 4.  Check resources sufficient?
@@ -55,11 +55,25 @@ def process_coins():
     total += int(input("How many nickels?: ")) * 0.05
     total += int(input("How many pennies?: ")) * 0.01
     return total
-    
+
+def check_payment(payment, cost):
+    print('checking payment...')
+    if payment >= cost:
+        print("making your drink...")
+        change = payment - cost
+        global money
+        money += cost
+        print(f"Your change is ${change}")
+        print(f"coffee machine cash on hand: {money}")
+        return True
+    else:
+        print("Insufficient funds. Money refunded.")
+        return False
+
 
 
 while is_on:
-    choice = input("What would you like? (espresso, latte, capuccino): ")
+    choice = input("What would you like? (espresso, latte, cappuccino): ")
 
     if choice == 'off':
         is_on = False
@@ -75,5 +89,6 @@ while is_on:
             print('making your drink')
             payment = process_coins()
             print(f"total received: {payment}")
+            check_payment(payment, drink['cost'])
         else:
             is_on = False

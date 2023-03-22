@@ -2,7 +2,10 @@
 
   ## Description
 
-  This is a simulated coffee machine app built using Python.  User is prompted to make a drink choice, insert coins.  The app keeps track of the resources it has (i.e. water, milk, coffee) and tracks accumulated money received. The app calculates the payment received vs the drink price and will notify user if insufficient funds were received and will make change for any overpayment.
+  This is a simulated coffee machine app built using Python and run in the terminal command line.  User is prompted to make a drink choice, insert coins.  The app keeps track of the resources it has (i.e. water, milk, coffee) and tracks accumulated money received. The app calculates the payment received vs the drink price and will notify user if insufficient funds were received and will make change for any overpayment.
+
+  Screenshot: 
+  ![screenshot](./screenshot.png)
   
   ## Table of Contents
   

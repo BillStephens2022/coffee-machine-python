@@ -39,6 +39,15 @@ resources = {
 # TODO: 7.  Make coffee.
 
 is_on = True
+money = 0
 
-choice = input("What would you like? (espresso, latte, capuccino): ")
+while is_on:
+    choice = input("What would you like? (espresso, latte, capuccino): ")
 
+    if choice == 'off':
+        is_on = False;
+    elif choice == 'report':
+        print(f"Water {resources['water']}ml")
+        print(f"Milk {resources['milk']}ml")
+        print(f"Coffee {resources['coffee']}ml")
+        print(f"Money ${money}")

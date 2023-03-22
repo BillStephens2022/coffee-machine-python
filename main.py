@@ -1,3 +1,5 @@
+from art import logo
+
 MENU = {
     "espresso": {
         "ingredients": {
@@ -60,14 +62,11 @@ def process_coins():
 
 def check_payment(payment, cost):
     """checks if payment is sufficient"""
-    print('checking payment...')
     if payment >= cost:
-        print("making your drink...")
         change = payment - cost
         global money
         money += cost
         print(f"Your change is ${change}")
-        print(f"coffee machine cash on hand: {money}")
         return True
     else:
         print("Insufficient funds. Money refunded.")
@@ -80,13 +79,14 @@ def make_coffee(drink, order_ingredients):
     print(f"Here is your {drink} ☕️. Enjoy")
 
 
-
+print(logo)
 while is_on:
     choice = input("What would you like? (espresso, latte, cappuccino): ")
 
     if choice == 'off':
         is_on = False
     elif choice == 'report':
+        print("Coffee Machine Resource Report:")
         print(f"Water {resources['water']}ml")
         print(f"Milk {resources['milk']}ml")
         print(f"Coffee {resources['coffee']}ml")
@@ -95,9 +95,9 @@ while is_on:
         drink = MENU[choice]
         order_ingredients = drink['ingredients']
         if check_resources(order_ingredients):
-            print('making your drink')
+            print(f"The price for a {choice} is ${drink['cost']}.")
             payment = process_coins()
-            print(f"total received: {payment}")
+            print(f"total received: ${round(payment, 2)}")
             if check_payment(payment, drink['cost']):
                 make_coffee(choice, drink['ingredients'])
         else:

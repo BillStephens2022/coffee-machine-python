@@ -41,13 +41,28 @@ resources = {
 is_on = True
 money = 0
 
+def check_resources(order_ingredients):
+    for ingredient in order_ingredients:
+        if order_ingredients[ingredient] >= resources[ingredient]:
+            print(f"Sorry there is not enough {ingredient}")
+            return False
+    return True
+
+
 while is_on:
     choice = input("What would you like? (espresso, latte, capuccino): ")
 
     if choice == 'off':
-        is_on = False;
+        is_on = False
     elif choice == 'report':
         print(f"Water {resources['water']}ml")
         print(f"Milk {resources['milk']}ml")
         print(f"Coffee {resources['coffee']}ml")
         print(f"Money ${money}")
+    else:
+        drink = MENU[choice]
+        order_ingredients = drink['ingredients']
+        if check_resources(order_ingredients):
+            print('making your drink')
+        else:
+            is_on = False

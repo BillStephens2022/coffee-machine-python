@@ -66,7 +66,7 @@ def check_payment(payment, cost):
         change = payment - cost
         global money
         money += cost
-        print(f"Your change is ${change}")
+        print(f"Your change is ${round(change, 2)}\n")
         return True
     else:
         print("Insufficient funds. Money refunded.")
@@ -76,7 +76,7 @@ def make_coffee(drink, order_ingredients):
     """deducts resources used to make the drink"""
     for ingredient in order_ingredients:
         resources[ingredient] -= order_ingredients[ingredient]
-    print(f"Here is your {drink} ☕️. Enjoy")
+    print(f"Here is your {drink} ☕️. Enjoy!!\n\n\n")
 
 
 print(logo)
@@ -86,18 +86,18 @@ while is_on:
     if choice == 'off':
         is_on = False
     elif choice == 'report':
-        print("Coffee Machine Resource Report:")
+        print("\n\nCoffee Machine Resource Report:\n")
         print(f"Water {resources['water']}ml")
         print(f"Milk {resources['milk']}ml")
         print(f"Coffee {resources['coffee']}ml")
-        print(f"Money ${money}")
+        print(f"Money ${money}\n\n")
     else:
         drink = MENU[choice]
         order_ingredients = drink['ingredients']
         if check_resources(order_ingredients):
-            print(f"The price for a {choice} is ${drink['cost']}.")
+            print(f"\nThe price for a {choice} is ${drink['cost']}.")
             payment = process_coins()
-            print(f"total received: ${round(payment, 2)}")
+            print(f"\nTotal received: ${round(payment, 2)}\n")
             if check_payment(payment, drink['cost']):
                 make_coffee(choice, drink['ingredients'])
         else:

@@ -48,6 +48,15 @@ def check_resources(order_ingredients):
             return False
     return True
 
+def process_coins():
+    print('Please insert coins.')
+    total = int(input("How many quarters?: ")) * 0.25
+    total += int(input("How many dimes?: ")) * 0.10
+    total += int(input("How many nickels?: ")) * 0.05
+    total += int(input("How many pennies?: ")) * 0.01
+    return total
+    
+
 
 while is_on:
     choice = input("What would you like? (espresso, latte, capuccino): ")
@@ -64,5 +73,7 @@ while is_on:
         order_ingredients = drink['ingredients']
         if check_resources(order_ingredients):
             print('making your drink')
+            payment = process_coins()
+            print(f"total received: {payment}")
         else:
             is_on = False
